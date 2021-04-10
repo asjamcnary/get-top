@@ -1,4 +1,4 @@
-from pages.main_page import MainPage
+from pages.gettop_browse_cat import MainPage
 from pages.product_page import ProductPage
 from pages.search_results_page import SearchResultsPage
 

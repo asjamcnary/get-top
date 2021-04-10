@@ -6,8 +6,8 @@ Feature: Test for Browse Categoris
 
     Given Open Gettop page 'https://gettop.us/'
     Then  Header "Browse Our Categories" text is shown
-    And   4 category titles are shown
-    And   Verify correct category title
-    When  Click thru each category title
+    And   4 Header Titles are shown
+    And   Verify correct Header Titles
+    When  Click thru each Header Title
     Then  Correct page opens
 
