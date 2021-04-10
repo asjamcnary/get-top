@@ -1,44 +1,44 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
 
-
 class MainPage(Page):
-    BROWSE_OUR_CATEGORIES = (By.XPATH, "//a[@href='https://gettop.us/product-category/accessories/']")
 
-    CATEGORY_NAME_1 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/ªá¥ááã-àë-2.jpg']")
-    CATEGORY_NAME_2 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/©¯¥¤ë.jpg']")
-    CATEGORY_NAME_3 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/â¥«¥ä®­ë.jpg']")
-    CATEGORY_NAME_4 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/­®ãâë-2.jpg']")
+
+    HEADER = (By.XPATH, "//span[@class='section-title-main']")
+    HEADER_TITLE = (By.XPATH, "//a[@href='https://gettop.us/product-category']")
+
 
     def open_main_page(self):
         self.open_url()
 
     def verify_browse_our_categories_present(self):
-        self.driver.find_element(*BROWSE_OUR_CATEGORIES)
+        self.driver.find_element(*HEADER)
 
-    def verify_categories_count(self, expected_categories):
-        actual_categories = self.driver.find_elements(*EXPECTED_CATEGORIES)
-        assert len(actual_categories) == int(expected_categories), f'Expected {expected_categories}'
+    def verify_categories_count(self, expected_titles):
+        actual_titles = self.driver.find_elements(*EXPECTED_TITLES)
+        assert len(actual_titles) == int(expected_titles), f'Expected {expected_titles}'
 
-    def correct_categories_names(self):
-        correct_category = self.driver.find_elements(*CATEGORIES)
-        for e in category_elements:
-            assert 'correct_category_name' in e.text, f'Error {category_names}...'
-            category_name = e.find_element(*CATEGORY_NAME).text
-            print(category_name)
-            assert category_name, f'Error {category_names}'
+    def correct_category_links(self):
+        correct_header_title = self.driver.find_elements(*TITLES)
+        for e in header_elements:
+            assert 'correct_header_titles' in e.text, f'Error {header_titles}'
+            header_title = e.find_element(*HEADER_TITLE).text
+            print(header_title)
+            assert header_title, f'Error {header_titles}'
 
-    def click_thru_category_names(self):
-        category_names = self.driver.find_elements(*CATEGORY_NAMES)
+    def click_thru_category_links(self):
+        header_titles = self.driver.find_elements(*HEADER_TITLES)
 
-    for x in range(len(category_names)):
-        category = self.driver.find_elements(*CATEGORY_NAMES)[x]
+    for x in range(len(header_titles)):
+        category = self.driver.find_elements(*CATEGHEADER_TITLE)[x]
 
-        category_name_text = category_name.text
-        category_name.click()
+        header_title_text = header_title.text
+        header_title.click()
 
-        category_name_text = self.driver.find_element(*CATEGORY).text
-    assert category_text in category_text, f'Expected {category_name} not in {category_text}'
+        header_title_text = self.driver.find_element(*HEADER).text
+    assert header_title in header_text, f'Expected {header_title} not in {header_text}'
+
+
 
 
 

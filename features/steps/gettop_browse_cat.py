@@ -1,15 +1,13 @@
 from selenium import webdriver
-from behave import when, then
+from behave import when, then, given
 from selenium.webdriver.common.by import By
 
+BROWSE_OUR_CATEGORIES = (By.XPATH, "//a[@href='https://gettop.us/product-category/accessories/']")
 
-BROWSE_OUR_CATEGORIES = (By.XPATH, "//span[@class='section-title-main']"
-
-CATEGORY_NAME 1 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/ªá¥ááã-àë-2.jpg']")
+CATEGORY_NAME_1 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/ªá¥ááã-àë-2.jpg']")
 CATEGORY_NAME_2 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/©¯¥¤ë.jpg']")
-CATEGORY_NAME_3 =  (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/â¥«¥ä®­ë.jpg']")
+CATEGORY_NAME_3 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/â¥«¥ä®­ë.jpg']")
 CATEGORY_NAME_4 = (By.XPATH, "//img[@src='https://gettop.us/wp-content/uploads/2020/07/­®ãâë-2.jpg']")
-
 
 
 @given('Open Gettop page')
@@ -29,24 +27,23 @@ def verify_categories_count(context, expected_categories):
 def correct_categories_names(context):
     correct_category = context.driver.find_elements(*CATEGORIES)
     for e in category_elements:
-        assert 'Regular' in e.text, f'Error...'
+        assert 'category_name' in e.text, f'Error {category_names}'
         category_name = e.find_element(*CATEGORY_NAME).text
         print(category_name)
-        assert category_name, f'Error {Wrong_categories_name}'
+        assert category_name, f'Error {category_names}'
 
 @then('User can click through each category name and verify correct page opens')
 def click_thru_category_names(context):
     category_names = context.driver.find_elements(*CATEGORY_NAMES)
 
+for x in range(len(category_names)):
+    category = context.driver.find_elements(*CATEGORY_NAMES)[x]
 
-     for x in range(len(category_names)):
-         category = context.driver.find_elements(*CATEGORY_NAMES)[x]
+    category_name_text = category_name.text
+    category_name.click()
 
-         category_name_text = category_name.text
-         category_name.click()
-
-         category_name_text = context.driver.find_element(*CATEGORY).text
-         assert category_text in category_text, f'Expected {category_name} not in {category_text}'
-
+    category_name_text = context.driver.find_element(*CATEGORY).text
+assert category_text in category_text, f'Expected {category_name} not in {category_text}'
 
 
+driver.quit()
